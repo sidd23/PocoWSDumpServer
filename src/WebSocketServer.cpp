@@ -163,26 +163,13 @@ public:
 		{
 			WebSocket ws(request, response);
 
-			/*
-			/// Sets up channel to log file
-			FormattingChannel* pFCFile = new FormattingChannel(new PatternFormatter("%d-%m-%Y %H:%M:%S.%c %N[%P]:%s:%q:%t"));
-			pFCFile->setChannel(new FileChannel("logs.raw"));
-			pFCFile->open();
-
-			/// Create Logger object for the above channel
-			Logger& fileLogger = Logger::create("FileLogger", pFCFile, Message::PRIO_INFORMATION);
-			*/
-
-			/// Create current local timestamp
+			/// Create & log current local timestamp
 			LocalDateTime oNow;
 			std::string sNowTimestamp = DateTimeFormatter::format(oNow, DateTimeFormat::RFC1123_FORMAT);
-
-			// fileLogger.information("\n\n" + sNowTimestamp);
 			app.logger().information(sNowTimestamp);
-			//*/
 
 			app.logger().information("WebSocket connection established.");
-			// fileLogger.information("WebSocket connection established.");
+			app.logger().information("================================================");
 
 			char buffer[1024];
 			int flags;
@@ -191,12 +178,11 @@ public:
 			{
 				iFrameLength = ws.receiveFrame(buffer, sizeof(buffer), flags);
 				app.logger().information(Poco::format("Frame received (length=%d, flags=0x%x).", iFrameLength, unsigned(flags)));
-				// fileLogger.information(Poco::format("Frame received (length=%d, flags=0x%x).", iFrameLength, unsigned(flags)));
 				ws.sendFrame(buffer, iFrameLength, flags);
 			}
 			while (iFrameLength > 0 && (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
 			app.logger().information("WebSocket connection closed.");
-			// fileLogger.information("WebSocket connection closed.");
+			app.logger().information("================================================\n\n");
 		}
 		catch (WebSocketException& exc)
 		{
@@ -293,23 +279,54 @@ protected:
 	{
 		loadConfiguration(); // load default configuration files, if present
 
+		/// Configures the application's root logger
+		/// to log to both console & specified log file
+
+		/// Create & configure the channels
+		/// one for console channel & other for pattern formatted file channel
+		/// Merge both to a Splitter Channel
+
+		// Creates a ConsoleChannel
 		AutoPtr<ConsoleChannel> pConsoleChannel(new ConsoleChannel);
 
+		// Create log file path & corresponding directories
+		Path pLogFilePath(false);
+		pLogFilePath.pushDirectory("log");
+		File pLogFile(pLogFilePath);
+		pLogFile.createDirectories();
+		// Set the Log File name
+		pLogFilePath.setFileName("log.raw");
+
+		/// Create log file path based on the OS
+#if defined(POCO_OS_FAMILY_WINDOWS)
+		std::string sLogFileName(pLogFilePath.toString(Path::PATH_WINDOWS));
+#elif defined(POCO_OS_FAMILY_UNIX)
+		std::string sLogFileName(pLogFilePath.toString(Path::PATH_UNIX));
+#endif
+
+		// Creates a Pattern Formatter - formats each log message
 		AutoPtr<PatternFormatter> pPF(new PatternFormatter("%Y-%m-%d %H:%M:%S.%c %N[%P]:%s:%q:%t"));
+		// Creates a FileChannel & configures/sets up the same
 		AutoPtr<FileChannel> pFileChannel(new FileChannel);
-		pFileChannel->setProperty("path", "log.raw");
+		// pFileChannel->setProperty("path", "log.raw");
+		pFileChannel->setProperty("path", sLogFileName);
 		pFileChannel->setProperty("rotation", "5 K");
 		pFileChannel->setProperty("archive", "timestamp");
+		// Merge both the PatternFormatter & FileChannel
+		// to a resultant FormattingChannel
 		AutoPtr<FormattingChannel> pFCFile(new FormattingChannel(pPF, pFileChannel));
 
+		// Creates & configures a SplitterChannel with the channels specified above
 		AutoPtr<SplitterChannel> pSplitterChannel(new SplitterChannel);
-
 		pSplitterChannel->addChannel(pFCFile);
 		pSplitterChannel->addChannel(pConsoleChannel);
 
+		// Sets app's root logger's channel to the above SplitterChannel
 		Logger::root().setChannel(pSplitterChannel);
 
-		Logger::root().information("This is a test log!");
+		// Logger::root().information("This is a test log!");
+		// Logger::root().information(pLogFilePath.toString(Path::PATH_WINDOWS));
+		Logger::root().information("Log files stored at: " + sLogFileName);
 
 		ServerApplication::initialize(self);
 	}

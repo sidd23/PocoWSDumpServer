@@ -1,0 +1,61 @@
+2018-09-14 12:46:38.9 E6430-PC::I:Log files stored at: log\log.raw
+2018-09-14 12:46:43.7 E6430-PC:Application:I:Request from 192.168.10.8:43605: GET /h264 HTTP/1.1
+2018-09-14 12:46:43.7 E6430-PC:Application:I:upgrade: websocket
+2018-09-14 12:46:43.7 E6430-PC:Application:I:connection: Upgrade
+2018-09-14 12:46:43.8 E6430-PC:Application:I:sec-websocket-key: gIQHuZhBO+pAYQbwyZWRtA==
+2018-09-14 12:46:43.8 E6430-PC:Application:I:host: 192.168.10.24:9980/h264
+2018-09-14 12:46:43.8 E6430-PC:Application:I:sec-websocket-origin: http://192.168.10.24:9980/h264
+2018-09-14 12:46:43.9 E6430-PC:Application:I:sec-websocket-version: 13
+2018-09-14 12:46:43.9 E6430-PC:Application:I:Fri, 14 Sep 2018 18:16:43 +0530
+2018-09-14 12:46:43.9 E6430-PC:Application:I:WebSocket connection established.
+2018-09-14 12:46:43.9 E6430-PC:Application:I:================================================
+2018-09-14 12:46:45.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.7 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.7 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.7 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.7 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.8 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.8 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.8 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.8 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.8 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.9 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.9 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.9 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:45.9 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.0 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.0 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.0 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.0 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.0 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.1 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.1 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.1 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.1 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.2 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.2 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.2 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.2 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.2 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.3 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.3 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.3 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.3 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.4 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.4 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.4 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.4 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.5 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.5 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.5 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.5 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.5 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.6 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
+2018-09-14 12:46:46.7 E6430-PC:Application:I:Frame received (length=16, flags=0x82).
