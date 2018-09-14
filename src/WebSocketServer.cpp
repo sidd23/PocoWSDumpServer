@@ -6,7 +6,7 @@
  * @date 12-09-2018
  */
 
-/// Header files reqd for WebSocket Server
+/// Header files reqd for (base) WebSocket Server
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPRequestHandler.h"
 #include "Poco/Net/HTTPRequestHandlerFactory.h"
@@ -35,6 +35,7 @@
 #include "Poco/DateTimeFormatter.h"
 #include "Poco/DateTimeFormat.h"
 
+/// Header file reqd. for detecting OS Platform
 #include "Poco/Foundation.h"
 
 /// Header file reqd. for exception handling
@@ -44,13 +45,11 @@
 #include "Poco/Logger.h"
 #include "Poco/PatternFormatter.h"
 #include "Poco/FormattingChannel.h"
-#include "Poco/FileChannel.h"
-#include "Poco/Message.h"
-
-#include "Poco/AutoPtr.h"
-
 #include "Poco/SplitterChannel.h"
 #include "Poco/ConsoleChannel.h"
+#include "Poco/FileChannel.h"
+#include "Poco/Message.h"
+#include "Poco/AutoPtr.h"
 
 
 using Poco::Net::ServerSocket;
@@ -80,14 +79,11 @@ using Poco::LocalDateTime;
 using Poco::Logger;
 using Poco::PatternFormatter;
 using Poco::FormattingChannel;
-using Poco::FileChannel;
-using Poco::Message;
-
-using Poco::AutoPtr;
-
 using Poco::SplitterChannel;
 using Poco::ConsoleChannel;
-
+using Poco::FileChannel;
+using Poco::Message;
+using Poco::AutoPtr;
 
 class PageRequestHandler: public HTTPRequestHandler
 	/// Return a HTML document with some JavaScript creating
@@ -174,6 +170,8 @@ public:
 			char buffer[1024];
 			int flags;
 			int iFrameLength;
+
+			/// Receives each frame & logs it until the WS connection is closed
 			do
 			{
 				iFrameLength = ws.receiveFrame(buffer, sizeof(buffer), flags);
@@ -181,6 +179,8 @@ public:
 				ws.sendFrame(buffer, iFrameLength, flags);
 			}
 			while (iFrameLength > 0 && (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
+			
+			/// Logs WebSocket connection termination
 			app.logger().information("WebSocket connection closed.");
 			app.logger().information("================================================\n\n");
 		}
@@ -211,7 +211,8 @@ class RequestHandlerFactory: public HTTPRequestHandlerFactory
 {
 public:
 	/**
-	 * @brief Create a [WebSocket, Page]RequestHandler object
+	 * @brief Create a [WebSocket, Page]RequestHandler object & 
+	 *        log client information
 	 * 
 	 * @param[in] request - WS request for which necessary object is created
 	 * @return HTTPRequestHandler* 
@@ -219,6 +220,8 @@ public:
 	HTTPRequestHandler* createRequestHandler(const HTTPServerRequest& request)
 	{
 		Application& app = Application::instance();
+
+		/// Logs client information
 		app.logger().information("Request from " 
 			+ request.clientAddress().toString()
 			+ ": "
