@@ -1,15 +1,12 @@
-//
-// WebSocketServer.cpp
-//
-// This sample demonstrates the WebSocket class.
-//
-// Copyright (c) 2012, Applied Informatics Software Engineering GmbH.
-// and Contributors.
-//
-// SPDX-License-Identifier:	BSL-1.0
-//
+/**
+ * @brief WebSocket DumpServer - Dumps WS requests received to console.
+ * 
+ * @file WebSocketServer.cpp
+ * @author Siddhant Shrivastava
+ * @date 12-09-2018
+ */
 
-
+/// Header files reqd for WebSocket Server
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPRequestHandler.h"
 #include "Poco/Net/HTTPRequestHandlerFactory.h"
@@ -27,9 +24,11 @@
 #include "Poco/Format.h"
 #include <iostream>
 
+/// Header files for File/Path handling
 #include "Poco/Path.h"
 #include "Poco/File.h"
 
+/// Header files required for Date, Time handling
 #include "Poco/LocalDateTime.h"
 #include "Poco/DateTime.h"
 #include "Poco/Timestamp.h"
@@ -38,8 +37,10 @@
 
 #include "Poco/Foundation.h"
 
+/// Header file reqd. for exception handling
 #include "Poco/Exception.h"
 
+/// Header files reqd. for logging
 #include "Poco/Logger.h"
 #include "Poco/PatternFormatter.h"
 #include "Poco/FormattingChannel.h"
@@ -83,6 +84,12 @@ class PageRequestHandler: public HTTPRequestHandler
 	/// a WebSocket connection.
 {
 public:
+	/**
+	 * @brief Returns a HTML document with some JavaScript creating a WebSocket connection
+	 * 
+	 * @param[in] request - Incoming WS request
+	 * @param[out] response - HTML document is sent as a response
+	 */
 	void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response)
 	{
 		response.setChunkedTransferEncoding(true);
@@ -129,9 +136,15 @@ public:
 
 
 class WebSocketRequestHandler: public HTTPRequestHandler
-	/// Handle a WebSocket connection.
+	/// Handles a WebSocket connection.
 {
 public:
+	/**
+	 * @brief Handles the incoming WS request
+	 * 
+	 * @param[in] request - request to be handled/processed
+	 * @param[out] response - used to sendd back the recvd. frame
+	 */
 	void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response)
 	{
 		Application& app = Application::instance();
@@ -148,29 +161,30 @@ public:
 
 			/// Create Logger object for the above channel
 			Logger& fileLogger = Logger::create("FileLogger", pFCFile, Message::PRIO_INFORMATION);
+			*/
 
 			/// Create current local timestamp
-			// LocalDateTime oNow;
-			// std::string sNowTimestamp = DateTimeFormatter::format(oNow, DateTimeFormat::RFC1123_FORMAT);
+			LocalDateTime oNow;
+			std::string sNowTimestamp = DateTimeFormatter::format(oNow, DateTimeFormat::RFC1123_FORMAT);
 
 			// fileLogger.information("\n\n" + sNowTimestamp);
-			// app.logger().information(sNowTimestamp);
-			*/
+			app.logger().information(sNowTimestamp);
+			//*/
 
 			app.logger().information("WebSocket connection established.");
 			// fileLogger.information("WebSocket connection established.");
 
 			char buffer[1024];
 			int flags;
-			int n;
+			int iFrameLength;
 			do
 			{
-				n = ws.receiveFrame(buffer, sizeof(buffer), flags);
-				app.logger().information(Poco::format("Frame received (length=%d, flags=0x%x).", n, unsigned(flags)));
-				// fileLogger.information(Poco::format("Frame received (length=%d, flags=0x%x).", n, unsigned(flags)));
-				ws.sendFrame(buffer, n, flags);
+				iFrameLength = ws.receiveFrame(buffer, sizeof(buffer), flags);
+				app.logger().information(Poco::format("Frame received (length=%d, flags=0x%x).", iFrameLength, unsigned(flags)));
+				// fileLogger.information(Poco::format("Frame received (length=%d, flags=0x%x).", iFrameLength, unsigned(flags)));
+				ws.sendFrame(buffer, iFrameLength, flags);
 			}
-			while (n > 0 && (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
+			while (iFrameLength > 0 && (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
 			app.logger().information("WebSocket connection closed.");
 			// fileLogger.information("WebSocket connection closed.");
 		}
@@ -196,8 +210,16 @@ public:
 
 
 class RequestHandlerFactory: public HTTPRequestHandlerFactory
+/// Factory class for returning either a new WebSocketRequestHandler or
+/// a new PageRequestHandler based on the incoming WS request
 {
 public:
+	/**
+	 * @brief Create a [WebSocket, Page]RequestHandler object
+	 * 
+	 * @param[in] request - WS request for which necessary object is created
+	 * @return HTTPRequestHandler* 
+	 */
 	HTTPRequestHandler* createRequestHandler(const HTTPServerRequest& request)
 	{
 		Application& app = Application::instance();
@@ -252,17 +274,31 @@ public:
 	}
 
 protected:
+	/**
+	 * @brief Loads configuration file & initializes the application
+	 * 
+	 * @param[out] self - application to be initialized
+	 */
 	void initialize(Application& self)
 	{
 		loadConfiguration(); // load default configuration files, if present
 		ServerApplication::initialize(self);
 	}
 		
+	/**
+	 * @brief Unintializes the Poco application
+	 * 
+	 */
 	void uninitialize()
 	{
 		ServerApplication::uninitialize();
 	}
 
+	/**
+	 * @brief Defines the available Poco application command-line options
+	 * 
+	 * @param[out] options - OptionSet which is updated
+	 */
 	void defineOptions(OptionSet& options)
 	{
 		ServerApplication::defineOptions(options);
@@ -273,6 +309,12 @@ protected:
 				.repeatable(false));
 	}
 
+	/**
+	 * @brief Sets the flag corresponding to the CLI options provided
+	 * 
+	 * @param[in] name - option name
+	 * @param[in] value option value
+	 */
 	void handleOption(const std::string& name, const std::string& value)
 	{
 		ServerApplication::handleOption(name, value);
@@ -281,6 +323,10 @@ protected:
 			_helpRequested = true;
 	}
 
+	/**
+	 * @brief Handles the "help" option
+	 * 
+	 */
 	void displayHelp()
 	{
 		HelpFormatter helpFormatter(options());
@@ -290,6 +336,12 @@ protected:
 		helpFormatter.format(std::cout);
 	}
 
+	/**
+	 * @brief Main/Driver function
+	 * 
+	 * @param[in] args - CLI arguments provided
+	 * @return int - exit status 
+	 */
 	int main(const std::vector<std::string>& args)
 	{
 		if (_helpRequested)
