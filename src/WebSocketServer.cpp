@@ -293,27 +293,18 @@ protected:
 	{
 		loadConfiguration(); // load default configuration files, if present
 
-		/*
-		AutoPtr<FileChannel> pChannel(new FileChannel);
-		pChannel->setProperty("path", "log.raw");
-		// pChannel->setProperty("rotation", "2 K");
-		pChannel->setProperty("archive", "timestamp");
-
-		Logger::root().setChannel(pChannel);
-
-		Logger& logger = Logger::get("AppLogger"); // Inherits the root logger
-
-		logger.information("Test log!");
-		*/
-
 		AutoPtr<ConsoleChannel> pConsoleChannel(new ConsoleChannel);
+
+		AutoPtr<PatternFormatter> pPF(new PatternFormatter("%Y-%m-%d %H:%M:%S.%c %N[%P]:%s:%q:%t"));
 		AutoPtr<FileChannel> pFileChannel(new FileChannel);
 		pFileChannel->setProperty("path", "log.raw");
 		pFileChannel->setProperty("rotation", "5 K");
 		pFileChannel->setProperty("archive", "timestamp");
+		AutoPtr<FormattingChannel> pFCFile(new FormattingChannel(pPF, pFileChannel));
+
 		AutoPtr<SplitterChannel> pSplitterChannel(new SplitterChannel);
 
-		pSplitterChannel->addChannel(pFileChannel);
+		pSplitterChannel->addChannel(pFCFile);
 		pSplitterChannel->addChannel(pConsoleChannel);
 
 		Logger::root().setChannel(pSplitterChannel);
