@@ -47,6 +47,11 @@
 #include "Poco/FileChannel.h"
 #include "Poco/Message.h"
 
+#include "Poco/AutoPtr.h"
+
+#include "Poco/SplitterChannel.h"
+#include "Poco/ConsoleChannel.h"
+
 
 using Poco::Net::ServerSocket;
 using Poco::Net::WebSocket;
@@ -77,6 +82,11 @@ using Poco::PatternFormatter;
 using Poco::FormattingChannel;
 using Poco::FileChannel;
 using Poco::Message;
+
+using Poco::AutoPtr;
+
+using Poco::SplitterChannel;
+using Poco::ConsoleChannel;
 
 
 class PageRequestHandler: public HTTPRequestHandler
@@ -282,6 +292,34 @@ protected:
 	void initialize(Application& self)
 	{
 		loadConfiguration(); // load default configuration files, if present
+
+		/*
+		AutoPtr<FileChannel> pChannel(new FileChannel);
+		pChannel->setProperty("path", "log.raw");
+		// pChannel->setProperty("rotation", "2 K");
+		pChannel->setProperty("archive", "timestamp");
+
+		Logger::root().setChannel(pChannel);
+
+		Logger& logger = Logger::get("AppLogger"); // Inherits the root logger
+
+		logger.information("Test log!");
+		*/
+
+		AutoPtr<ConsoleChannel> pConsoleChannel(new ConsoleChannel);
+		AutoPtr<FileChannel> pFileChannel(new FileChannel);
+		pFileChannel->setProperty("path", "log.raw");
+		pFileChannel->setProperty("rotation", "5 K");
+		pFileChannel->setProperty("archive", "timestamp");
+		AutoPtr<SplitterChannel> pSplitterChannel(new SplitterChannel);
+
+		pSplitterChannel->addChannel(pFileChannel);
+		pSplitterChannel->addChannel(pConsoleChannel);
+
+		Logger::root().setChannel(pSplitterChannel);
+
+		Logger::root().information("This is a test log!");
+
 		ServerApplication::initialize(self);
 	}
 		
