@@ -1,5 +1,5 @@
 /**
- * @brief WebSocket DumpServer - Dumps WS requests received to console.
+ * @brief WebSocket DumpServer - Dumps WS requests received to console & logs to file.
  * 
  * @file WebSocketServer.cpp
  * @author Siddhant Shrivastava
@@ -51,6 +51,9 @@
 #include "Poco/Message.h"
 #include "Poco/AutoPtr.h"
 
+#include "Poco//TeeStream.h"
+#include <fstream>
+
 
 using Poco::Net::ServerSocket;
 using Poco::Net::WebSocket;
@@ -84,6 +87,8 @@ using Poco::ConsoleChannel;
 using Poco::FileChannel;
 using Poco::Message;
 using Poco::AutoPtr;
+
+using Poco::TeeOutputStream;
 
 class PageRequestHandler: public HTTPRequestHandler
 	/// Return a HTML document with some JavaScript creating
@@ -151,57 +156,7 @@ public:
 	 * @param[in] request - request to be handled/processed
 	 * @param[out] response - used to sendd back the recvd. frame
 	 */
-	void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response)
-	{
-		Application& app = Application::instance();
-
-		try
-		{
-			WebSocket ws(request, response);
-
-			/// Create & log current local timestamp
-			LocalDateTime oNow;
-			std::string sNowTimestamp = DateTimeFormatter::format(oNow, DateTimeFormat::RFC1123_FORMAT);
-			app.logger().information(sNowTimestamp);
-
-			app.logger().information("WebSocket connection established.");
-			app.logger().information("================================================");
-
-			char buffer[1024];
-			int flags;
-			int iFrameLength;
-
-			/// Receives each frame & logs it until the WS connection is closed
-			do
-			{
-				iFrameLength = ws.receiveFrame(buffer, sizeof(buffer), flags);
-				app.logger().information(Poco::format("Frame received (length=%d, flags=0x%x).", iFrameLength, unsigned(flags)));
-				ws.sendFrame(buffer, iFrameLength, flags);
-			}
-			while (iFrameLength > 0 && (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
-			
-			/// Logs WebSocket connection termination
-			app.logger().information("WebSocket connection closed.");
-			app.logger().information("================================================\n\n");
-		}
-		catch (WebSocketException& exc)
-		{
-			app.logger().log(exc);
-			switch (exc.code())
-			{
-			case WebSocket::WS_ERR_HANDSHAKE_UNSUPPORTED_VERSION:
-				response.set("Sec-WebSocket-Version", WebSocket::WEBSOCKET_VERSION);
-				// fallthrough
-			case WebSocket::WS_ERR_NO_HANDSHAKE:
-			case WebSocket::WS_ERR_HANDSHAKE_NO_VERSION:
-			case WebSocket::WS_ERR_HANDSHAKE_NO_KEY:
-				response.setStatusAndReason(HTTPResponse::HTTP_BAD_REQUEST);
-				response.setContentLength(0);
-				response.send();
-				break;
-			}
-		}
-	}
+	void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response);
 };
 
 
@@ -422,3 +377,95 @@ private:
 
 
 POCO_SERVER_MAIN(WebSocketServer)
+
+/**
+* @brief Handles the incoming WS request
+*
+* @param[in] request - request to be handled/processed
+* @param[out] response - used to sendd back the recvd. frame
+*/
+
+inline void WebSocketRequestHandler::handleRequest(HTTPServerRequest & request, HTTPServerResponse & response)
+{
+	Application& app = Application::instance();
+
+	try
+	{
+		WebSocket ws(request, response);
+
+		/// Create & log current local timestamp
+		LocalDateTime oNow;
+		std::string sNowTimestamp = DateTimeFormatter::format(oNow, DateTimeFormat::RFC1123_FORMAT);
+		app.logger().information(sNowTimestamp);
+
+		// Generates timestamp to be appended to the stream output file
+		std::string sOutputFileTimestamp = DateTimeFormatter::format(oNow, "%e-%m-%Y_%H%M%S%F");
+
+		/// Construct output stream for writing buffer received to file
+		// TeeOutputStream tee(std::cout); // Uncomment if you wish to use a 
+		                                // single stream object to write to both console & to file simultaneously
+		
+		// Set output file name
+		// Create output file path & corresponding directories
+		Path pOutputFilePath(false);
+		pOutputFilePath.pushDirectory("output");
+		File pOutputFile(pOutputFilePath);
+		pOutputFile.createDirectories();
+
+		// Name of the file buffer contents received are to be written to
+		std::string outFileName("output" + sOutputFileTimestamp + ".raw");
+
+		// Set the output File name
+		pOutputFilePath.setFileName(outFileName);
+
+		/// Create output file path based on the OS
+#if defined(POCO_OS_FAMILY_WINDOWS)
+		std::string sOutputFileName(pOutputFilePath.toString(Path::PATH_WINDOWS));
+#elif defined(POCO_OS_FAMILY_UNIX)
+		std::string sLogFileName(pLogFilePath.toString(Path::PATH_UNIX));
+#endif
+		
+		std::ofstream outStream(sOutputFileName);
+		// tee.addStream(outStream); // Uncomment if using TeeOutputStream
+
+		app.logger().information("Output file stored at: %s", sOutputFileName);
+
+		app.logger().information("WebSocket connection established.");
+		app.logger().information("================================================");
+
+		char buffer[1024];
+		int flags;
+		int iFrameLength;
+
+		/// Receives each frame & logs it until the WS connection is closed
+		do
+		{
+			iFrameLength = ws.receiveFrame(buffer, sizeof(buffer), flags);
+			outStream << buffer << std::endl;
+			// tee << buffer << std::endl; // Use in case you want to write to both console & file simultaneously
+			app.logger().information(Poco::format("Frame received (buffer=%s, length=%d, flags=0x%x).", std::string(buffer), iFrameLength, unsigned(flags)));
+			ws.sendFrame(buffer, iFrameLength, flags);
+		} while (iFrameLength > 0 && (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
+
+		/// Logs WebSocket connection termination
+		app.logger().information("WebSocket connection closed.");
+		app.logger().information("================================================\n\n");
+	}
+	catch (WebSocketException& exc)
+	{
+		app.logger().log(exc);
+		switch (exc.code())
+		{
+		case WebSocket::WS_ERR_HANDSHAKE_UNSUPPORTED_VERSION:
+			response.set("Sec-WebSocket-Version", WebSocket::WEBSOCKET_VERSION);
+			// fallthrough
+		case WebSocket::WS_ERR_NO_HANDSHAKE:
+		case WebSocket::WS_ERR_HANDSHAKE_NO_VERSION:
+		case WebSocket::WS_ERR_HANDSHAKE_NO_KEY:
+			response.setStatusAndReason(HTTPResponse::HTTP_BAD_REQUEST);
+			response.setContentLength(0);
+			response.send();
+			break;
+		}
+	}
+}
