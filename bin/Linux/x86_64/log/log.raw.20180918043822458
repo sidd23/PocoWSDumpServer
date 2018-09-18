@@ -1,0 +1,63 @@
+2018-09-18 04:38:21.0 aasim:Application:I:Request from 192.168.10.8:48717: GET /h264 HTTP/1.1
+2018-09-18 04:38:21.0 aasim:Application:I:upgrade: websocket
+2018-09-18 04:38:21.0 aasim:Application:I:connection: Upgrade
+2018-09-18 04:38:21.0 aasim:Application:I:sec-websocket-key: gIQHuZhBO+pAYQbwyZWRtA==
+2018-09-18 04:38:21.0 aasim:Application:I:host: 192.168.10.67:9980/h264
+2018-09-18 04:38:21.0 aasim:Application:I:sec-websocket-origin: http://192.168.10.67:9980/h264
+2018-09-18 04:38:21.0 aasim:Application:I:sec-websocket-version: 13
+2018-09-18 04:38:21.0 aasim:Application:I:Tue, 18 Sep 2018 10:08:21 +0530
+2018-09-18 04:38:21.0 aasim:Application:I:WebSocket connection established.
+2018-09-18 04:38:21.0 aasim:Application:I:================================================
+2018-09-18 04:38:21.5 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.5 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.6 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.6 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.6 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.6 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.6 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.6 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.7 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.7 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.7 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.7 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.7 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.7 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.8 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.8 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.8 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.8 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.8 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.8 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.9 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.9 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.9 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.9 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.9 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:21.9 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.0 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.0 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.0 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.0 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.0 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.0 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.1 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.1 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.1 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.1 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.1 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.1 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.2 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.2 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.2 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.2 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.2 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.2 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.3 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.3 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.3 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.3 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.3 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.3 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.4 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.4 aasim:Application:I:Frame received (length=16, flags=0x82).
+2018-09-18 04:38:22.4 aasim:Application:I:Frame received (length=16, flags=0x82).
