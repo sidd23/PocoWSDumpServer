@@ -1,52 +1,46 @@
-2018-09-20 11:15:11.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:11.3 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:12.3 E6430-PC:Application:I:Frame received (buffer=, length=0, flags=0x0).
-2018-09-20 11:15:12.3 E6430-PC:Application:I:WebSocket connection closed.
-2018-09-20 11:15:12.4 E6430-PC:Application:I:================================================
+2018-09-20 13:01:39.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.3 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:39.3 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:40.0 E6430-PC:Application:I:Frame received (buffer=, length=0, flags=0x0).
+2018-09-20 13:01:40.0 E6430-PC:Application:I:WebSocket connection closed.
+2018-09-20 13:01:40.0 E6430-PC:Application:I:================================================
 
 
-2018-09-20 11:15:13.7 E6430-PC:Application:I:Request from 192.168.10.12:43968: GET /h264 HTTP/1.1
-2018-09-20 11:15:13.7 E6430-PC:Application:I:upgrade: websocket
-2018-09-20 11:15:13.7 E6430-PC:Application:I:connection: Upgrade
-2018-09-20 11:15:13.8 E6430-PC:Application:I:sec-websocket-key: gIQHuZhBO+pAYQbwyZWRtA==
-2018-09-20 11:15:13.9 E6430-PC:Application:I:host: 192.168.10.22:9980/h264
-2018-09-20 11:15:14.0 E6430-PC:Application:I:sec-websocket-origin: http://192.168.10.22:9980/h264
-2018-09-20 11:15:14.1 E6430-PC:Application:I:sec-websocket-version: 13
-2018-09-20 11:15:14.1 E6430-PC:Application:I:Thu, 20 Sep 2018 16:45:14 +0530
-2018-09-20 11:15:14.1 E6430-PC:Application:I:Output file stored at: output\output20-09-2018_164514147779.raw
-2018-09-20 11:15:14.2 E6430-PC:Application:I:WebSocket connection established.
-2018-09-20 11:15:14.2 E6430-PC:Application:I:================================================
-2018-09-20 11:15:14.6 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.7 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.7 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.7 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.8 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.8 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.8 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.9 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.9 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:14.9 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:15.3 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
-2018-09-20 11:15:16.0 E6430-PC:Application:I:Frame received (buffer=, length=0, flags=0x0).
-2018-09-20 11:15:16.0 E6430-PC:Application:I:WebSocket connection closed.
-2018-09-20 11:15:16.1 E6430-PC:Application:I:================================================
+2018-09-20 13:01:41.0 E6430-PC:Application:I:Request from 192.168.10.12:46092: GET /h264 HTTP/1.1
+2018-09-20 13:01:41.0 E6430-PC:Application:I:upgrade: websocket
+2018-09-20 13:01:41.1 E6430-PC:Application:I:connection: Upgrade
+2018-09-20 13:01:41.1 E6430-PC:Application:I:sec-websocket-key: gIQHuZhBO+pAYQbwyZWRtA==
+2018-09-20 13:01:41.1 E6430-PC:Application:I:host: 192.168.10.22:9980/h264
+2018-09-20 13:01:41.1 E6430-PC:Application:I:sec-websocket-origin: http://192.168.10.22:9980/h264
+2018-09-20 13:01:41.2 E6430-PC:Application:I:sec-websocket-version: 13
+2018-09-20 13:01:41.2 E6430-PC:Application:I:Thu, 20 Sep 2018 18:31:41 +0530
+2018-09-20 13:01:41.2 E6430-PC:Application:I:Output file stored at: output\output20-09-2018_183141233099.raw
+2018-09-20 13:01:41.2 E6430-PC:Application:I:WebSocket connection established.
+2018-09-20 13:01:41.3 E6430-PC:Application:I:================================================
+2018-09-20 13:01:43.5 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:43.6 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:43.6 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:43.6 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:43.7 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:43.8 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:43.9 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.0 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.1 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.2 E6430-PC:Application:I:Frame received (buffer=, length=16, flags=0x82).
+2018-09-20 13:01:44.9 E6430-PC:Application:I:Frame received (buffer=, length=0, flags=0x0).
+2018-09-20 13:01:44.9 E6430-PC:Application:I:WebSocket connection closed.
+2018-09-20 13:01:44.9 E6430-PC:Application:I:================================================
 
 

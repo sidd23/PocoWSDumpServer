@@ -448,6 +448,7 @@ protected:
 		}
 		else
 		{
+			/* Original single-thread WebSocketServer Application
 			// get parameters from configuration file
 			unsigned short port = (unsigned short) config().getInt("WebSocketServer.port", 9980);
 			
@@ -455,6 +456,31 @@ protected:
 			ServerSocket svs(port);
 			// set-up a HTTPServer instance
 			HTTPServer srv(new RequestHandlerFactory, svs, new HTTPServerParams);
+			// start the HTTPServer
+			srv.start();
+			// wait for CTRL-C or kill
+			waitForTerminationRequest();
+			// Stop the HTTPServer
+			srv.stop();
+			*/
+			// get parameters from configuration file
+			unsigned short port = (unsigned short)config().getInt("HTTPTimeServer.port", 9980);
+			// std::string format(config().getString("HTTPTimeServer.format", DateTimeFormat::SORTABLE_FORMAT));
+			int maxQueued = config().getInt("HTTPTimeServer.maxQueued", 100);
+			int maxThreads = config().getInt("HTTPTimeServer.maxThreads", 16);
+			// Increases max number of threads in thread pool
+			ThreadPool::defaultPool().addCapacity(maxThreads);
+
+			HTTPServerParams* pParams = new HTTPServerParams;
+			// Set the max number of queued connections
+			pParams->setMaxQueued(maxQueued);
+			// Set max number of threads
+			pParams->setMaxThreads(maxThreads);
+
+			// set-up a server socket
+			ServerSocket svs(port);
+			// set-up a HTTPServer instance
+			HTTPServer srv(new RequestHandlerFactory, svs, pParams);
 			// start the HTTPServer
 			srv.start();
 			// wait for CTRL-C or kill
