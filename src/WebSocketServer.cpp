@@ -110,8 +110,16 @@ public:
 		ostr << "<head>";
 		ostr << "<title>WebSocketServer</title>";
 		ostr << "<script type=\"text/javascript\">";
+		// Create array/vector to store WebSocket object instances
+		ostr << "var k_bucket=[];";
 		ostr << "function WebSocketTest()";
 		ostr << "{";
+		// Extract number of times requests are to be sent
+		ostr << "var times = parseInt(document.getElementById(\"times\").value);";
+		// Loop to send 'times' no. of requests
+		ostr << "for(var it = 0; it < times; ++it) {";
+		// log connection number
+		ostr << "console.log(it);";
 		ostr << "  if (\"WebSocket\" in window)";
 		ostr << "  {";
 		ostr << "    var ws = new WebSocket(\"ws://" << request.serverAddress().toString() << "/ws\");";
@@ -119,12 +127,12 @@ public:
 		ostr << "      {";
 		ostr << "        ws.send(\"Hello, world!\");";
 		ostr << "      };";
-		ostr << "    ws.onmessage = function(evt)";
-		ostr << "      { ";
-		ostr << "        var msg = evt.data;";
-		ostr << "        alert(\"Message received: \" + msg);";
-		ostr << "        ws.close();";
-		ostr << "      };";
+		// ostr << "    ws.onmessage = function(evt)";
+		// ostr << "      { ";
+		// ostr << "        var msg = evt.data;";
+		// ostr << "        alert(\"Message received: \" + msg);";
+		// ostr << "        ws.close();";
+		// ostr << "      };";
 		ostr << "    ws.onclose = function()";
 		ostr << "      { ";
 		ostr << "        alert(\"WebSocket closed.\");";
@@ -134,11 +142,15 @@ public:
 		ostr << "  {";
 		ostr << "     alert(\"This browser does not support WebSockets.\");";
 		ostr << "  }";
+		// End loop
+		ostr << "  }"; // end loop
 		ostr << "}";
 		ostr << "</script>";
 		ostr << "</head>";
 		ostr << "<body>";
 		ostr << "  <h1>WebSocket Server</h1>";
+		// Get number of requests to be sent
+		ostr << "  <input type=\"textbox\" id=\"times\"></input>";
 		ostr << "  <p><a href=\"javascript:WebSocketTest()\">Run WebSocket Script</a></p>";
 		ostr << "</body>";
 		ostr << "</html>";
@@ -204,7 +216,7 @@ inline void WebSocketRequestHandler::handleRequest(HTTPServerRequest & request, 
 #if defined(POCO_OS_FAMILY_WINDOWS)
 		std::string sOutputFileName(pOutputFilePath.toString(Path::PATH_WINDOWS));
 #elif defined(POCO_OS_FAMILY_UNIX)
-		std::string sLogFileName(pLogFilePath.toString(Path::PATH_UNIX));
+		std::string sOutputFileName(pOutputFilePath.toString(Path::PATH_UNIX));
 #endif
 
 		std::ofstream outStream(sOutputFileName);
@@ -222,6 +234,7 @@ inline void WebSocketRequestHandler::handleRequest(HTTPServerRequest & request, 
 		/// Receives each frame & logs it until the WS connection is closed
 		do
 		{
+			memset(buffer, 0, 1024);
 			iFrameLength = ws.receiveFrame(buffer, sizeof(buffer), flags);
 			outStream << buffer << std::endl;
 			// tee << buffer << std::endl; // Use in case you want to write to both console & file simultaneously
@@ -466,8 +479,8 @@ protected:
 			// get parameters from configuration file
 			unsigned short port = (unsigned short)config().getInt("HTTPTimeServer.port", 9980);
 			// std::string format(config().getString("HTTPTimeServer.format", DateTimeFormat::SORTABLE_FORMAT));
-			int maxQueued = config().getInt("HTTPTimeServer.maxQueued", 100);
-			int maxThreads = config().getInt("HTTPTimeServer.maxThreads", 16);
+			int maxQueued = config().getInt("HTTPTimeServer.maxQueued", 500);
+			int maxThreads = config().getInt("HTTPTimeServer.maxThreads", 100);
 			// Increases max number of threads in thread pool
 			ThreadPool::defaultPool().addCapacity(maxThreads);
 
@@ -485,7 +498,53 @@ protected:
 			srv.start();
 			// wait for CTRL-C or kill
 			waitForTerminationRequest();
-			// Stop the HTTPServer
+
+			/// Write server info to file
+			/// Create & log current local timestamp
+			LocalDateTime oNow;
+			std::string sNowTimestamp = DateTimeFormatter::format(oNow, DateTimeFormat::RFC1123_FORMAT);
+			// app.logger().information(sNowTimestamp);
+
+			// Generates timestamp to be appended to the stream output file
+			std::string sSrvPerformanceFileTimestamp = DateTimeFormatter::format(oNow, "%e-%m-%Y_%H%M%S%F");
+
+			/// Construct output stream for writing buffer received to file
+			// TeeOutputStream tee(std::cout); // Uncomment if you wish to use a 
+											// single stream object to write to both console & to file simultaneously
+
+			// Set output file name
+			// Create output file path & corresponding directories
+			Path pSrvPerformanceFilePath(false);
+			pSrvPerformanceFilePath.pushDirectory("serverInfo");
+			File pSrvPerformanceFile(pSrvPerformanceFilePath);
+			pSrvPerformanceFile.createDirectories();
+
+			// Name of the file buffer contents received are to be written to
+			std::string srvPerformanceFileName("output" + sSrvPerformanceFileTimestamp + ".txt");
+
+			// Set the output File name
+			pSrvPerformanceFilePath.setFileName(srvPerformanceFileName);
+
+			/// Create output file path based on the OS
+#if defined(POCO_OS_FAMILY_WINDOWS)
+			std::string sSrvPerformanceFileName(pSrvPerformanceFilePath.toString(Path::PATH_WINDOWS));
+#elif defined(POCO_OS_FAMILY_UNIX)
+			std::string sSrvPerformanceFileName(pSrvPerformanceFilePath.toString(Path::PATH_UNIX));
+#endif
+
+			std::ofstream srvStream(sSrvPerformanceFileName);
+			// tee.addStream(outStream); // Uncomment if using TeeOutputStream
+
+			// app.logger().information("Server info file stored at: %s", sSrvPerformanceFileName);
+			std::cout << "Server info file stored at: " << sSrvPerformanceFileName << std::endl;
+
+			srvStream << "Maximum number of concurrently handled connections: " << srv.maxConcurrentConnections() <<  std::endl;
+			srvStream << "Maximum number of threads available: " << srv.maxThreads() << std::endl;
+			srvStream << "Number of queued connections: " << srv.queuedConnections() <<  std::endl;
+			srvStream << "Nummber of refused connections: " << srv.refusedConnections() << std::endl;
+			srvStream << "Total number of handled connections: " << srv.totalConnections() << std::endl;
+
+            // Stop the HTTPServer
 			srv.stop();
 		}
 		return Application::EXIT_OK;

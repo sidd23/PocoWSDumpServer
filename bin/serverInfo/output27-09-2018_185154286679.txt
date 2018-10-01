@@ -1,0 +1,5 @@
+Maximum number of concurrently handled connections: 1
+Maximum number of threads available: 116
+Number of queued connections: 0
+Nummber of refused connections: 0
+Total number of handled connections: 3

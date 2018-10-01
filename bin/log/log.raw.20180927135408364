@@ -1,0 +1,66 @@
+2018-09-27 13:53:57.6 E6430-PC:Application:I:Thu, 27 Sep 2018 19:23:57 +0530
+2018-09-27 13:54:05.5 E6430-PC:Application:I:Output file stored at: output\output27-09-2018_192357663726.raw
+2018-09-27 13:54:05.6 E6430-PC:Application:I:WebSocket connection established.
+2018-09-27 13:54:05.6 E6430-PC:Application:I:================================================
+2018-09-27 13:54:05.6 E6430-PC:Application:I:Frame received (buffer=Hello WebSocket!, length=16, flags=0x81).
+2018-09-27 13:54:01.5 E6430-PC:Application:I:Output file stored at: output\output27-09-2018_192401580950.raw
+2018-09-27 13:53:57.9 E6430-PC:Application:I:Output file stored at: output\output27-09-2018_192357840736.raw
+2018-09-27 13:53:54.4 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:06.0 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:06.0 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:06.1 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:06.1 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:53:54.5 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:06.4 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:06.4 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:06.4 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:06.5 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:54:06.5 E6430-PC:Application:I:Thu, 27 Sep 2018 19:24:06 +0530
+2018-09-27 13:54:06.5 E6430-PC:Application:I:Output file stored at: output\output27-09-2018_192406554234.raw
+2018-09-27 13:54:06.6 E6430-PC:Application:I:WebSocket connection established.
+2018-09-27 13:54:06.6 E6430-PC:Application:I:================================================
+2018-09-27 13:53:54.7 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:06.7 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:06.7 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:06.7 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:53:58.7 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:53:53.2 E6430-PC:Application:I:Request from 127.0.0.1:62092: GET / HTTP/1.1
+2018-09-27 13:53:58.8 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:02.9 E6430-PC:Application:I:WebSocket connection established.
+2018-09-27 13:54:06.9 E6430-PC:Application:I:================================================
+2018-09-27 13:54:06.9 E6430-PC:Application:I:Frame received (buffer=Hello WebSocket!, length=16, flags=0x81).
+2018-09-27 13:53:58.9 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:07.0 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:07.0 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:07.1 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:07.1 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:53:59.1 E6430-PC:Application:I:Frame received (buffer=, length=0, flags=0x0).
+2018-09-27 13:54:07.2 E6430-PC:Application:I:WebSocket connection closed.
+2018-09-27 13:54:07.2 E6430-PC:Application:I:================================================
+
+
+2018-09-27 13:53:53.2 E6430-PC:Application:I:Request from 127.0.0.1:62106: GET / HTTP/1.1
+2018-09-27 13:54:07.3 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:07.3 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:53:59.3 E6430-PC:Application:I:Output file stored at: output\output27-09-2018_192359294819.raw
+2018-09-27 13:53:53.2 E6430-PC:Application:I:Request from 127.0.0.1:62115: GET / HTTP/1.1
+2018-09-27 13:53:53.2 E6430-PC:Application:I:Request from 127.0.0.1:62110: GET / HTTP/1.1
+2018-09-27 13:54:07.4 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:07.5 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:07.5 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:07.5 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:07.6 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:53:53.2 E6430-PC:Application:I:Request from 127.0.0.1:62120: GET / HTTP/1.1
+2018-09-27 13:54:07.6 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:07.7 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:07.7 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:07.7 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:07.8 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:53:59.8 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:07.8 E6430-PC:Application:I:Upgrade: websocket
+2018-09-27 13:54:07.9 E6430-PC:Application:I:Sec-WebSocket-Version: 13
+2018-09-27 13:54:07.9 E6430-PC:Application:I:Sec-WebSocket-Key: y7HfWQt6iVQ4BfJ5s6tJHA==
+2018-09-27 13:54:07.9 E6430-PC:Application:I:Host: 127.0.0.1:9980
+2018-09-27 13:53:53.2 E6430-PC:Application:I:Request from 127.0.0.1:62138: GET / HTTP/1.1
+2018-09-27 13:54:08.0 E6430-PC:Application:I:Connection: Upgrade
+2018-09-27 13:54:08.1 E6430-PC:Application:I:Upgrade: websocket
